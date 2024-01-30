@@ -2,10 +2,12 @@ package com.example.wastebucks
 
 import android.content.Intent
 import android.content.res.Configuration
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -36,6 +38,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navigationView: NavigationView
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var mAuth: FirebaseAuth
+    private var shoppingBtn:ImageButton?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -151,9 +154,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(android.content.Intent(this, LeaderboardActivity::class.java))
         }
 
-        binding.shoppingButton.setOnClickListener {
-            startActivity(android.content.Intent(this, ShoppingActivity::class.java))
-        }
+
         replaceFragment(Home())
 
 
@@ -178,6 +179,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
     }
+
 
     private fun replaceFragment(fragment: Fragment) {
         val fragmentManager = supportFragmentManager
@@ -216,4 +218,21 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
     }
+    fun openShop(view: View)
+    {
+        val launchIntent=packageManager.getLaunchIntentForPackage("com.google.android.flipkart");
+        if(launchIntent!=null)
+        {
+            startActivity(launchIntent);
+        }
+        else
+        {
+            val url="https://www.flipkart.com/"
+            val urlIntent=Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(urlIntent);
+        }
+
+    }
+
+
 }

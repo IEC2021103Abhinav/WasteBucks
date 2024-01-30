@@ -52,6 +52,7 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="end"
                     android:background="@null"
+                    android:onClick="openShop"
                     android:src="@drawable/shopping_cart"
                     app:tint="@color/white" />
             </androidx.appcompat.widget.Toolbar>
